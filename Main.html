@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="cdcproj">
+  <head>
+    <meta charset="utf-8">
+    <title>NRE CDC Page</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src = "Scripts/angularAjax.js"></script>
+    <script src = "Scripts/scripts.js"></script>
+    <!-- <script src = "Scripts/unique.js"></script> -->
+   
+    </script>
+  </head>
+  <body>
+    <h1>CDC Test Page</h1>
+    
+    <button onclick="displayBigTable()">
+        Show/Hide All Reports
+    </button>
+    &nbsp;
+    <button onclick="displayStateTable">
+        Show/Hide State Reports
+    </button>
+
+    <div id="mainTable" ng-controller="getAllFields">
+
+        <!-- removed due to inaccuracy -->
+        <!-- <p> Total deaths across all states: {{ getTotal() }} </p> -->
+
+        <!-- Could not implement successfully -->
+        <!-- <p>Search data by a specific state...</p>
+       <select ng-model="selectedState" ng-options="">
+       </select>
+       <p>Selected: {{selectedState.state}}</p>
+       <p>States: </p> -->
+
+       <div id ="table">
+
+       <h1>Recent Statistics: All Reports</h1>
+        <table border="1" width="75%">
+            <tr>
+                <th>State</th>
+                <th>Submission Time</th>
+                <th>Total Deaths</th>
+                <th>Percent of Deaths</th>
+            </tr>
+            <tr ng-repeat="x in federalData | orderBy:sortDeaths">
+              <td>{{ x.state }}</td>
+              <td>{{ x.submission_date }}</td>
+              <td>{{ x.tot_death | number }}</td>
+              <td>{{ ((x.tot_death-0)/(1880000)*100) }}</td>
+            </tr>
+        </table>
+       </div>
+    </div>
+
+  </body>
+</html>
